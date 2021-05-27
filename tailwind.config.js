@@ -1,3 +1,5 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
   future: {
     // removeDeprecatedGapUtilities: true,
@@ -26,6 +28,9 @@ module.exports = {
       none: 'none',
     },
     extend: {
+      fontFamily: {
+        display: ['GT-Haptic', ...defaultTheme.fontFamily.sans],
+      },
       spacing: {
         72: '18rem',
         84: '21rem',
@@ -74,8 +79,8 @@ module.exports = {
         },
       },
       backgroundImage: (theme) => ({
-        dotsWhite: "url('./images/dots-white.svg')",
-        dotsDark: "url('./images/dots-dark.svg')",
+        dotsWhite: "url('../images/dots-white.svg')",
+        dotsDark: "url('../images/dots-dark.svg')",
       }),
     },
   },
