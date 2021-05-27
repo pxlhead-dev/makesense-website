@@ -11,7 +11,7 @@ const navLinks = [
 ]
 
 const Header = () => (
-  <header className="w-full fixed top-0 bg-white">
+  <header className="w-full fixed top-0 bg-white z-40">
     <div className="max-w-5xl px-4 py-6 flex justify-between items-center mx-auto">
       <Link className="flex items-center space-x-3" to="/home">
         <svg
