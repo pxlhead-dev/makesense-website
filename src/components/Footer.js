@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Twitter } from 'react-feather'
+import { Twitter } from 'react-feather'
 
 const navLinks = [
   { title: 'Statement' },
@@ -11,7 +11,7 @@ const navLinks = [
 ]
 
 const Footer = () => (
-  <footer className="w-full">
+  <footer className="w-full py-8">
     <div className="max-w-5xl px-4 py-6 mx-auto divide-y-2 divide-gray-100">
       <div className="flex justify-between items-center pb-6">
         {' '}
