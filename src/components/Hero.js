@@ -1,18 +1,20 @@
 import React, { useRef, useState } from 'react'
 import { Zap, Package, BookOpen, Scissors } from 'react-feather'
 import { useSpring, useTrail, animated, config } from '@react-spring/web'
+import Typist from 'react-typist'
 
 const calc = (x, y, rect) => [
-  -(y - rect.top - rect.height / 2) / 5,
   (x - rect.left - rect.width / 2) / 5,
+  (y - rect.top - rect.height / 2) / 5,
   1.1,
 ]
 const trans = (x, y, s) => `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`
+const transX = (x, y, s) => `translate(${x}px, ${y}px) scale(${s})`
 
 const templates = [
   {
     icon: Package,
-    type: 'blank',
+    type: 'arch',
     isDisabled: false,
     title: 'Architector',
     text: 'mind pattern',
@@ -20,7 +22,7 @@ const templates = [
   },
   {
     icon: Scissors,
-    type: 'template',
+    type: 'gard',
     isDisabled: false,
     title: 'Gardener',
     text: 'mind pattern',
@@ -28,13 +30,38 @@ const templates = [
   },
   {
     icon: BookOpen,
-    type: 'template',
+    type: 'lib',
     isDisabled: false,
     title: 'Librarian',
     text: 'mind pattern',
     handlerName: 'onBackToMapClick',
   },
 ]
+
+const Button = () => {
+  const configList = Object.keys(config)
+  const ref = useRef(null)
+  const [xys, set] = useState([0, 0, 1])
+  const { preset } = { value: 'wobbly', options: configList }
+  const props = useSpring({ xys, config: config[preset] })
+
+  return (
+    <div ref={ref}>
+      <animated.button
+        style={{ transform: props.xys.to(transX) }}
+        onMouseLeave={() => set([0, 0, 1])}
+        onMouseMove={(e) => {
+          const rect = ref.current.getBoundingClientRect()
+          set(calc(e.clientX, e.clientY, rect))
+        }}
+        className="group flex space-x-2 items-center px-4 py-3.5 bg-primary-400 text-white rounded-xl cursor-pointer mb-3 border-2 border-transparent hover:border-primary-800"
+      >
+        <Zap size={20} className="group-hover:text-yellow-200" />
+        <span className="text-xl">I Want My Mind Palace</span>
+      </animated.button>
+    </div>
+  )
+}
 
 const Card = ({ type, icon, imgSrc, title, text, onClick, isDisabled }) => {
   const Icon = icon
@@ -56,7 +83,11 @@ const Card = ({ type, icon, imgSrc, title, text, onClick, isDisabled }) => {
           const rect = ref.current.getBoundingClientRect()
           set(calc(e.clientX, e.clientY, rect))
         }}
-        className="flex flex-col justify-between items-stretch w-full h-48 p-5 bg-accent-indigo bg-opacity-70 hover:bg-opacity-100 rounded-2xl cursor-pointer"
+        className={`${type === 'arch' && 'bg-accent-indigo bg-circuit'} ${
+          type === 'gard' && 'bg-accent-pink bg-leafs'
+        } ${
+          type === 'lib' && 'bg-accent-yellow bg-library'
+        } flex flex-col justify-between items-stretch w-full h-48 p-5 bg-opacity-50 hover:bg-opacity-100 rounded-2xl cursor-pointer`}
       >
         <div>
           {imgSrc ? (
@@ -84,16 +115,19 @@ const Hero = () => {
     <div className="max-w-5xl px-4 mx-auto">
       <section className="flex flex-col justify-center items-center mt-40 mb-8">
         <h1 className="font-display font-bold text-7xl text-center mb-8">
-          Evolve into a <span className="text-primary-400">Superhuman</span> with your Mind Palace
+          Evolve into a{' '}
+          <Typist avgTypingDelay={100} className="text-primary-400 inline-block">
+            <span>Human</span>
+            <Typist.Backspace count={5} delay={1000} />
+            <span>Superhuman</span>
+          </Typist>{' '}
+          with your Mind Palace
         </h1>
         <p className="font-display text-2xl max-w-2xl text-center mb-8 text-opacity-70">
           Create or record notes, semantically organize, explore and search through your
           <span className="text-primary-400"> AI-powered digital mind!</span>
         </p>
-        <button className="flex space-x-2 items-center px-4 py-3.5 bg-primary-400 text-white rounded-xl cursor-pointer mb-3">
-          <Zap size={20} />
-          <span className="text-xl">I Want My Mind Palace</span>
-        </button>
+        <Button />
         <span className="text-xs mb-16 opacity-60">
           Free 14 Days Trial - No credit card required
         </span>

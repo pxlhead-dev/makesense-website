@@ -81,6 +81,9 @@ module.exports = {
       backgroundImage: (theme) => ({
         dotsWhite: "url('../images/dots-white.svg')",
         dotsDark: "url('../images/dots-dark.svg')",
+        leafs: "url('../images/leafs.svg')",
+        circuit: "url('../images/circuit.svg')",
+        library: "url('../images/library.svg')",
       }),
     },
   },
@@ -89,6 +92,8 @@ module.exports = {
     scale: ['responsive', 'hover', 'focus', 'group-hover'],
     extend: {
       backgroundImage: ['dark'],
+      transform: ['group-hover'],
+      translate: ['group-hover'],
     },
   },
   darkMode: 'class',

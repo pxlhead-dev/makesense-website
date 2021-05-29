@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Package } from 'react-feather'
-import { useTrail, animated } from '@react-spring/web'
+import { useSpring, useTrail, animated, config } from '@react-spring/web'
+
+const transX = (x, y, s) => `translate(${x}px, ${y}px) scale(${s})`
 
 const features = [
   {
@@ -37,17 +39,30 @@ const features = [
 
 const Feature = ({ icon, title, text }) => {
   const Icon = icon
+  const [xys, set] = useState([0, 0, 1])
+  const props = useSpring({ xys, config: config.gentle })
 
   return (
-    <animated.div className="flex flex-col justify-between items-start w-full py-4 cursor-pointer">
-      <div className="p-4 rounded-full bg-accent-indigo mb-4">
+    <div
+      onMouseLeave={() => set([0, 0, 1])}
+      onMouseMove={(e) => {
+        // const rect = ref.current.getBoundingClientRect()
+        set([50, 50, 10])
+      }}
+      className="relative flex flex-col justify-between items-start w-full p-4 cursor-pointer rounded-2xl overflow-hidden"
+    >
+      <animated.div
+        style={{ transform: props.xys.to(transX) }}
+        className="absolute top-4 left-4 w-12 h-12 rounded-full bg-accent-indigo"
+      />
+      <div className="p-4 rounded-full mb-4 z-10">
         <Icon size={16} />
       </div>
       <div className="flex flex-col">
-        <h6 className="text-xl font-medium mb-0.2">{title}</h6>
+        <h6 className="text-xl font-medium mb-0.2 z-10">{title}</h6>
         <span className="text-sm text-inherit opacity-70">{text}</span>
       </div>
-    </animated.div>
+    </div>
   )
 }
 
