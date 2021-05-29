@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { Zap, Package, BookOpen, Scissors } from 'react-feather'
 import { useSpring, useTrail, animated, config } from '@react-spring/web'
 import Typist from 'react-typist'
@@ -105,11 +105,51 @@ const Card = ({ type, icon, imgSrc, title, text, onClick, isDisabled }) => {
   )
 }
 
-const Hero = () => {
+const Hero = ({ scrollPosition }) => {
+  const ref = useRef(null)
+  const [showOnScroll, setShowOnScroll] = useState(false)
+  const [rect, setRect] = useState(10000)
+
+  // const [scrollPosition, setPosition] = useState(0)
+
+  // useLayoutEffect(() => {
+  //   function updatePosition() {
+  //     setPosition(window.pageYOffset)
+  //   }
+  //   window.addEventListener('scroll', updatePosition)
+  //   updatePosition()
+  //   return () => window.removeEventListener('scroll', updatePosition)
+  // }, [])
+
+  // const [scrollPosition, setScrollPosition] = useState(0)
+  // const handleScroll = () => {
+  //   const position = window.pageYOffset
+  //   setScrollPosition(position)
+  // }
+
+  // useEffect(() => {
+  //   window.addEventListener('scroll', handleScroll, { passive: true })
+
+  //   return () => {
+  //     window.removeEventListener('scroll', handleScroll)
+  //   }
+  // }, [])
+
+  // const handleScroll = () => {
+  // setRect(ref.current.getBoundingClientRect().top)
+  // console.log(rect)
+  // rect < 0 && setShowOnScroll(true)
+  // }
+
+  useEffect(() => {
+    setRect(ref.current.getBoundingClientRect().top)
+    rect < window.innerHeight / 2 && setShowOnScroll(true)
+  }, [scrollPosition])
+
   const templatesTrail = useTrail(templates.length, {
     from: { opacity: 0, transform: 'scale(0)' },
-    to: { opacity: 1, transform: 'scale(1)' },
-    config: { tension: 250 },
+    to: { opacity: showOnScroll ? 1 : 0, transform: showOnScroll ? 'scale(1)' : 'scale(0)' },
+    config: config.gentle,
   })
   return (
     <div className="max-w-5xl px-4 mx-auto">
@@ -149,14 +189,14 @@ const Hero = () => {
             <path
               d="M156.181 331.341C157.138 329.988 156.817 328.116 155.464 327.159L133.419 311.571C132.066 310.614 130.194 310.935 129.237 312.288C128.28 313.641 128.602 315.513 129.954 316.47L149.55 330.326L135.694 349.922C134.737 351.275 135.059 353.147 136.411 354.104C137.764 355.06 139.636 354.739 140.593 353.386L156.181 331.341ZM-20.5417 417.771C-21.2897 416.292 -23.0945 415.7 -24.5729 416.448C-26.0514 417.196 -26.6436 419.001 -25.8957 420.479L-20.5417 417.771ZM-23.2187 419.125L-25.8957 420.479L-23.9782 424.269L-21.0473 421.195L-23.2187 419.125ZM153.225 326.652L140.002 328.921L141.017 334.834L154.239 332.566L153.225 326.652ZM-20.5417 417.771V417.771L-25.8957 420.479V420.479L-20.5417 417.771ZM140.002 328.921C76.8315 339.759 18.835 370.664 -25.3901 417.055L-21.0473 421.195C22.2879 375.738 79.1173 345.454 141.017 334.834L140.002 328.921Z"
               fill="#201943"
-              fill-opacity="0.12"
+              fillOpacity="0.12"
             />
             <path
               d="M-38 3.32747L-22.8692 4.45675C126.922 15.6363 267.736 80.1663 374 186.327V186.327"
               stroke="#201943"
-              stroke-opacity="0.12"
-              stroke-width="6"
-              stroke-dasharray="14 14"
+              strokeOpacity="0.12"
+              strokeWidth="6"
+              strokeDasharray="14 14"
             />
           </svg>
         </div>
@@ -171,19 +211,19 @@ const Hero = () => {
             <path
               d="M4.75341 253.074C3.09766 253.134 1.70624 251.841 1.64557 250.185L0.656914 223.204C0.596244 221.548 1.88931 220.156 3.54505 220.096C5.20079 220.035 6.59222 221.328 6.65289 222.984L7.53169 246.968L31.5156 246.089C33.1713 246.028 34.5628 247.321 34.6234 248.977C34.6841 250.633 33.391 252.024 31.7353 252.085L4.75341 253.074ZM429.305 4.89691C428.477 3.46203 428.969 1.62727 430.404 0.798835C431.838 -0.0295795 433.673 0.462034 434.502 1.89691L429.305 4.89691ZM431.904 3.39691L434.502 1.89691L436.625 5.57549L432.448 6.34702L431.904 3.39691ZM2.44598 248.033L25.1671 223.584L29.5622 227.668L6.84113 252.118L2.44598 248.033ZM429.305 4.89691V4.89691L434.502 1.89691V1.89691L429.305 4.89691ZM25.1671 223.584C133.062 107.481 275.498 29.2354 431.359 0.446816L432.448 6.34702C277.856 34.9013 136.58 112.51 29.5622 227.668L25.1671 223.584Z"
               fill="#201943"
-              fill-opacity="0.12"
+              fillOpacity="0.12"
             />
             <path
               d="M590.114 473.868L575.539 478.085C431.25 519.833 276.773 508.449 140.163 446V446"
               stroke="#201943"
-              stroke-opacity="0.12"
-              stroke-width="6"
-              stroke-dasharray="14 14"
+              strokeOpacity="0.12"
+              strokeWidth="6"
+              strokeDasharray="14 14"
             />
           </svg>
         </div>
       </section>
-      <section className="w-full flex flex-col justify-center items-center py-16">
+      <section ref={ref} className="w-full flex flex-col justify-center items-center py-16">
         <div className="w-full flex justify-between items-center space-x-8">
           {templatesTrail.map((props, index) => (
             <animated.div key={templates[index].title} style={props} className="w-full">

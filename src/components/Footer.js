@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { Twitter } from 'react-feather'
 
 const navLinks = [
@@ -14,8 +13,7 @@ const Footer = () => (
   <footer className="w-full py-8">
     <div className="max-w-5xl px-4 py-6 mx-auto divide-y-2 divide-gray-100">
       <div className="flex justify-between items-center pb-6">
-        {' '}
-        <Link className="flex items-center space-x-3" to="/home">
+        <a href="" className="flex items-center space-x-3">
           <svg
             width="32"
             height="30"
@@ -28,13 +26,13 @@ const Footer = () => (
               fill="#201943"
             />
           </svg>
-        </Link>
+        </a>
         <nav className="flex space-x-4 items-center">
           {navLinks.map(({ title }) => {
             return (
-              <Link key={title} className="cursor-pointer" to="/home">
+              <a href="" key={title} className="cursor-pointer">
                 {title}
-              </Link>
+              </a>
             )
           })}
         </nav>
@@ -47,8 +45,12 @@ const Footer = () => (
       <div className="flex justify-between items-center pt-6">
         <span>Copyright © 2021 or just... forget it</span>
         <div className="flex space-x-4">
-          <Link className="underline">Confidentiality</Link>
-          <Link className="underline">Terms of Use</Link>
+          <a href="" className="underline">
+            Confidentiality
+          </a>
+          <a href="" className="underline">
+            Terms of Use
+          </a>
         </div>
       </div>
     </div>

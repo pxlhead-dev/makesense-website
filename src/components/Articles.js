@@ -4,23 +4,23 @@ import { useTrail, animated } from '@react-spring/web'
 
 const notes = [
   {
-    title: 'Transfers are instant',
+    title: 'Transfers are instant1',
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas malesuada ex mauris',
   },
   {
-    title: 'Transfers are instant',
+    title: 'Transfers are instant2',
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas malesuada ex mauris',
   },
   {
-    title: 'Transfers are instant',
+    title: 'Transfers are instant3',
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas malesuada ex mauris',
   },
   {
-    title: 'Transfers are instant',
+    title: 'Transfers are instant4',
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas malesuada ex mauris',
   },
   {
-    title: 'Transfers are instant',
+    title: 'Transfers are instant5',
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas malesuada ex mauris',
   },
 ]
