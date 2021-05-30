@@ -1,7 +1,9 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useState } from 'react'
 import { Zap, Package, BookOpen, Scissors } from 'react-feather'
 import { useSpring, useTrail, animated, config } from '@react-spring/web'
 import Typist from 'react-typist'
+
+import Button from './Button'
 
 const calc = (x, y, rect) => [
   (x - rect.left - rect.width / 2) / 5,
@@ -9,7 +11,6 @@ const calc = (x, y, rect) => [
   1.1,
 ]
 const trans = (x, y, s) => `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`
-const transX = (x, y, s) => `translate(${x}px, ${y}px) scale(${s})`
 
 const templates = [
   {
@@ -37,31 +38,6 @@ const templates = [
     handlerName: 'onBackToMapClick',
   },
 ]
-
-const Button = () => {
-  const configList = Object.keys(config)
-  const ref = useRef(null)
-  const [xys, set] = useState([0, 0, 1])
-  const { preset } = { value: 'wobbly', options: configList }
-  const props = useSpring({ xys, config: config[preset] })
-
-  return (
-    <div ref={ref}>
-      <animated.button
-        style={{ transform: props.xys.to(transX) }}
-        onMouseLeave={() => set([0, 0, 1])}
-        onMouseMove={(e) => {
-          const rect = ref.current.getBoundingClientRect()
-          set(calc(e.clientX, e.clientY, rect))
-        }}
-        className="group flex space-x-2 items-center px-4 py-3.5 bg-primary-400 text-white rounded-xl cursor-pointer mb-3 border-2 border-transparent hover:border-primary-800"
-      >
-        <Zap size={20} className="group-hover:text-yellow-200" />
-        <span className="text-xl">I Want My Mind Palace</span>
-      </animated.button>
-    </div>
-  )
-}
 
 const Card = ({ type, icon, imgSrc, title, text, onClick, isDisabled }) => {
   const Icon = icon
@@ -105,46 +81,27 @@ const Card = ({ type, icon, imgSrc, title, text, onClick, isDisabled }) => {
   )
 }
 
-const Hero = ({ scrollPosition }) => {
-  const ref = useRef(null)
+const Hero = () => {
   const [showOnScroll, setShowOnScroll] = useState(false)
-  const [rect, setRect] = useState(10000)
 
-  // const [scrollPosition, setPosition] = useState(0)
+  const handleIntersect = (entries) => {
+    entries.forEach((entry) => {
+      if (entry.intersectionRatio > 0) {
+        setShowOnScroll(true)
+      } else {
+        setShowOnScroll(false)
+      }
+    })
+  }
 
-  // useLayoutEffect(() => {
-  //   function updatePosition() {
-  //     setPosition(window.pageYOffset)
-  //   }
-  //   window.addEventListener('scroll', updatePosition)
-  //   updatePosition()
-  //   return () => window.removeEventListener('scroll', updatePosition)
-  // }, [])
+  const setObserver = (element) => {
+    if (!element) {
+      return
+    }
 
-  // const [scrollPosition, setScrollPosition] = useState(0)
-  // const handleScroll = () => {
-  //   const position = window.pageYOffset
-  //   setScrollPosition(position)
-  // }
-
-  // useEffect(() => {
-  //   window.addEventListener('scroll', handleScroll, { passive: true })
-
-  //   return () => {
-  //     window.removeEventListener('scroll', handleScroll)
-  //   }
-  // }, [])
-
-  // const handleScroll = () => {
-  // setRect(ref.current.getBoundingClientRect().top)
-  // console.log(rect)
-  // rect < 0 && setShowOnScroll(true)
-  // }
-
-  useEffect(() => {
-    setRect(ref.current.getBoundingClientRect().top)
-    rect < window.innerHeight / 2 && setShowOnScroll(true)
-  }, [scrollPosition])
+    const observer = new IntersectionObserver(handleIntersect, { threshold: 0.8 })
+    observer.observe(element)
+  }
 
   const templatesTrail = useTrail(templates.length, {
     from: { opacity: 0, transform: 'scale(0)' },
@@ -171,11 +128,11 @@ const Hero = ({ scrollPosition }) => {
         <span className="text-xs mb-16 opacity-60">
           Free 14 Days Trial - No credit card required
         </span>
-        <div className="w-full h-auto rounded-xl overflow-hidden shadow-sm transform translate-y-0 hover:shadow-2xl hover:-translate-y-4 z-10 transition duration-300 ease-in-out cursor-pointer">
+        <div className="w-full h-1/3 rounded-xl overflow-hidden shadow-sm transform translate-y-0 hover:shadow-2xl hover:-translate-y-4 z-10 transition duration-300 ease-in-out cursor-pointer">
           <img
             src="https://cdn.dribbble.com/users/2001748/screenshots/15717849/media/403b275af92e9adee9ec917dac06557c.png?compress=1&resize=1600x1200"
             alt=""
-            className="object-contain"
+            className="object-contain w-full h-auto"
           />
         </div>
         <div className="absolute top-1/2 left-0 z-0">
@@ -223,7 +180,12 @@ const Hero = ({ scrollPosition }) => {
           </svg>
         </div>
       </section>
-      <section ref={ref} className="w-full flex flex-col justify-center items-center py-16">
+      <section
+        ref={(ref) => {
+          setObserver(ref)
+        }}
+        className="w-full flex flex-col justify-center items-center py-16"
+      >
         <div className="w-full flex justify-between items-center space-x-8">
           {templatesTrail.map((props, index) => (
             <animated.div key={templates[index].title} style={props} className="w-full">

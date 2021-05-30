@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Zap, MoreVertical, FileText } from 'react-feather'
-import { useTrail, animated } from '@react-spring/web'
+import { useTrail, animated, config } from '@react-spring/web'
 
 const notes = [
   {
@@ -43,13 +43,38 @@ const Note = ({ title, text }) => {
 }
 
 const Articles = () => {
+  const [showOnScroll, setShowOnScroll] = useState(false)
+
+  const handleIntersect = (entries) => {
+    entries.forEach((entry) => {
+      if (entry.intersectionRatio > 0) {
+        setShowOnScroll(true)
+      } else {
+        setShowOnScroll(false)
+      }
+    })
+  }
+
+  const setObserver = (element) => {
+    if (!element) {
+      return
+    }
+
+    const observer = new IntersectionObserver(handleIntersect, { threshold: 0.5 })
+    observer.observe(element)
+  }
   const notesTrail = useTrail(notes.length, {
     from: { opacity: 0, transform: 'scale(0)' },
-    to: { opacity: 1, transform: 'scale(1)' },
-    config: { tension: 250 },
+    to: { opacity: showOnScroll ? 1 : 0, transform: showOnScroll ? 'scale(1)' : 'scale(0)' },
+    config: config.gentle,
   })
   return (
-    <section className="w-full flex justify-between items-center h-screen bg-dotsWhite">
+    <section
+      ref={(ref) => {
+        setObserver(ref)
+      }}
+      className="w-full flex justify-between items-center h-screen bg-dotsWhite"
+    >
       <div className="w-full flex justify-between items-center max-w-5xl px-4 mx-auto">
         <div className="flex-1 max-w-md flex flex-col items-start z-10">
           <span className="font-display text-lg mb-6">Need more?</span>

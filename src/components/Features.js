@@ -67,13 +67,39 @@ const Feature = ({ icon, title, text }) => {
 }
 
 const Features = () => {
+  const [showOnScroll, setShowOnScroll] = useState(false)
+
+  const handleIntersect = (entries) => {
+    entries.forEach((entry) => {
+      if (entry.intersectionRatio > 0) {
+        setShowOnScroll(true)
+      } else {
+        setShowOnScroll(false)
+      }
+    })
+  }
+
+  const setObserver = (element) => {
+    if (!element) {
+      return
+    }
+
+    const observer = new IntersectionObserver(handleIntersect, { threshold: 0.5 })
+    observer.observe(element)
+  }
+
   const featuresTrail = useTrail(features.length, {
     from: { opacity: 0, transform: 'scale(0)' },
-    to: { opacity: 1, transform: 'scale(1)' },
-    config: { tension: 250 },
+    to: { opacity: showOnScroll ? 1 : 0, transform: showOnScroll ? 'scale(1)' : 'scale(0)' },
+    config: config.gentle,
   })
   return (
-    <section className="w-full flex flex-col justify-center items-center h-screen bg-dark-100">
+    <section
+      ref={(ref) => {
+        setObserver(ref)
+      }}
+      className="w-full flex flex-col justify-center items-center h-screen bg-dark-100"
+    >
       <div className="w-full flex flex-col justify-center items-center max-w-5xl px-4 mx-auto">
         <div className="w-full flex justify-between items-end mb-16">
           <h2 className="font-display font-medium text-5xl max-w-lg">
