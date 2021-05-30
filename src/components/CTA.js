@@ -6,9 +6,9 @@ const CTA = () => {
   return (
     <section
       id="cta"
-      className="relative w-full flex justify-between items-end pt-32 pb-32 bg-accent-indigo"
+      className="relative w-full flex justify-between items-end py-16 md:py-32 bg-accent-indigo"
     >
-      <div className="w-full flex justify-between items-end max-w-5xl px-4 mx-auto">
+      <div className="w-full flex flex-col md:flex-row justify-between items-end max-w-5xl px-4 mx-auto">
         <div className="flex-1 flex flex-col space-y-16 items-start z-10">
           <h2 className="font-display font-medium text-5xl max-w-lg">
             Make Sense created by & for Community

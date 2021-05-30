@@ -27,7 +27,7 @@ const Footer = () => (
             />
           </svg>
         </span>
-        <nav className="flex space-x-4 items-center">
+        <nav className="hidden md:flex space-x-4 items-center">
           {navLinks.map(({ title }) => {
             return (
               <span key={title} className="cursor-pointer">
@@ -42,7 +42,7 @@ const Footer = () => (
           <Figma size={16} stroke="none" fill="currentColor" />
         </div>
       </div>
-      <div className="flex justify-between items-center pt-6">
+      <div className="flex flex-col space-y-4 md:space-y-0 md:flex-row justify-between items-center pt-6">
         <span>Copyright © 2021 or just... forget it</span>
         <div className="flex space-x-4">
           <span className="underline">Confidentiality</span>

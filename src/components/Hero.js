@@ -142,8 +142,8 @@ const Hero = () => {
   })
   return (
     <div className="max-w-5xl px-4 mx-auto">
-      <section className="flex flex-col justify-center items-center mt-40 mb-8">
-        <h1 className="font-display font-bold text-7xl text-center mb-8">
+      <section className="flex flex-col justify-center items-center mt-28 md:mt-40 mb-8">
+        <h1 className="font-display font-bold text-4xl md:text-7xl text-center mb-8">
           Evolve into a{' '}
           <Typist avgTypingDelay={100} className="inline-block">
             <span>Human</span>
@@ -152,12 +152,12 @@ const Hero = () => {
           </Typist>{' '}
           with your Mind Palace
         </h1>
-        <p className="font-display text-2xl max-w-2xl text-center mb-8 text-opacity-70">
+        <p className="font-display text-lg md:text-2xl max-w-2xl text-center mb-8 text-opacity-70">
           Create or record notes, semantically organize, explore and search through your
           <span className="text-primary-400"> AI-powered digital mind!</span>
         </p>
         <Button icon="zap" text="I Want My Mind Palace" size="cta" />
-        <span className="text-xs mb-16 opacity-60">
+        <span className="text-xs mb-8 md:mb-16 opacity-60">
           Free 14 Days Trial - No credit card required
         </span>
         <animated.div
@@ -183,7 +183,7 @@ const Hero = () => {
             className="object-contain w-full h-auto"
           />
         </animated.div> */}
-        <div className="absolute top-1/2 left-0 z-0">
+        <div className="absolute top-1/2 left-0 z-0 hidden md:block">
           <svg
             width="377"
             height="425"
@@ -205,7 +205,7 @@ const Hero = () => {
             />
           </svg>
         </div>
-        <div className="absolute top-1/3 right-0 z-0">
+        <div className="absolute top-1/3 right-0 z-0 hidden md:block">
           <svg
             width="297"
             height="506"
@@ -234,7 +234,7 @@ const Hero = () => {
         }}
         className="w-full flex flex-col justify-center items-center pt-8 pb-16"
       >
-        <div className="w-full flex justify-between items-center space-x-8">
+        <div className="w-full flex flex-col md:flex-row justify-between items-center space-y-8 md:space-x-8">
           {templatesTrail.map((props, index) => (
             <animated.div key={templates[index].title} style={props} className="w-full">
               <Card

@@ -32,7 +32,7 @@ const Button = ({ icon, text, size }) => {
         className="group flex space-x-2 items-center px-4 py-3.5 bg-primary-400 text-white rounded-xl cursor-pointer mb-3 border-2 border-transparent hover:border-primary-800"
       >
         <Icon size={20} className="group-hover:text-yellow-200" />
-        <span className={`${size === 'cta' ? 'text-xl' : 'text-sm'}`}>{text}</span>
+        <span className={`${size === 'cta' ? 'text-base md:text-xl' : 'text-sm'}`}>{text}</span>
       </animated.button>
     </div>
   )

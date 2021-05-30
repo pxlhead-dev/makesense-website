@@ -101,14 +101,14 @@ const Features = () => {
       ref={(ref) => {
         setObserver(ref)
       }}
-      className="w-full flex flex-col justify-center items-center h-screen bg-gray-50"
+      className="w-full flex flex-col justify-center items-center py-16 md:py-0 md:h-screen bg-gray-50"
     >
       <div className="w-full flex flex-col justify-center items-center max-w-5xl px-4 mx-auto">
         <div className="w-full flex justify-between items-end mb-16">
           <h2 className="font-display font-medium text-5xl max-w-lg">
             Structure everything you get in mind
           </h2>
-          <span className="text-gray-600 text-sm">hover to preview</span>
+          <span className="text-gray-600 text-sm hidden md:block">hover to preview</span>
         </div>
         <div className="w-full grid grid-flow-row md:grid-cols-3 gap-6 py-4 max-w-full">
           {featuresTrail.map((props, index) => (

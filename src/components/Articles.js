@@ -71,9 +71,9 @@ const Articles = () => {
       ref={(ref) => {
         setObserver(ref)
       }}
-      className="w-full flex justify-between items-center h-screen bg-dotsWhite"
+      className="w-full flex justify-between items-center py-16 md:py-0 md:h-screen bg-dotsWhite"
     >
-      <div className="w-full flex justify-between items-center max-w-5xl px-4 mx-auto">
+      <div className="w-full flex flex-col space-y-6 md:space-y-0 md:flex-row justify-between items-center max-w-5xl px-4 mx-auto">
         <div className="flex-1 max-w-md flex flex-col items-start z-10">
           <span className="font-display text-lg mb-6">Need more?</span>
           <h2 className="font-display font-medium text-5xl max-w-lg mb-6">
@@ -85,7 +85,7 @@ const Articles = () => {
           </p>
           <Button icon="zap" text="Okey, let's rock!" />
         </div>
-        <div className="flex-1 flex flex-col space-y-8 items-end z-10 h-full overflow-y-auto">
+        <div className="flex-1 flex flex-row md:flex-col space-x-4 md:space-x-0 md:space-y-8 justify-start overflow-hidden items-end z-10 h-full overflow-y-auto">
           {notesTrail.map((props, index) => (
             <animated.div key={notes[index].title} style={props}>
               <Note key={notes[index].title} title={notes[index].title} text={notes[index].text} />

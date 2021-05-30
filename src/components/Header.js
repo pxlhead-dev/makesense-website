@@ -28,7 +28,7 @@ const Header = () => (
         </svg>
         <span>MakeSense</span>
       </Link>
-      <nav className="flex space-x-5 items-center">
+      <nav className="space-x-5 items-center hidden md:flex">
         {navLinks.map(({ title, path }) => {
           return (
             <Link
