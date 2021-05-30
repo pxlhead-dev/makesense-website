@@ -33,3 +33,22 @@
   transition-timing-function: cubic-bezier(0.8, 1, 0.7, 1);
   transition-duration: 0.3s;
 }
+
+.tooltip {
+  border-radius: 5px !important;
+  padding: 4px 10px !important;
+  font-weight: 500 !important;
+  background-color: black !important;
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.08) !important;
+  opacity: 1 !important;
+}
+
+.tooltip-xl {
+  border-radius: 8px !important;
+  padding: 10px 12px !important;
+}
+
+.tooltip::before,
+.tooltip::after {
+  display: none;
+}

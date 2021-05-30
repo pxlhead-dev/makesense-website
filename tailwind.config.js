@@ -84,6 +84,7 @@ module.exports = {
         leafs: "url('../images/leafs.svg')",
         circuit: "url('../images/circuit.svg')",
         library: "url('../images/library.svg')",
+        circles: "url('../images/circles.svg')",
       }),
     },
   },

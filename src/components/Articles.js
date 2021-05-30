@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { Zap, MoreVertical, FileText } from 'react-feather'
 import { useTrail, animated, config } from '@react-spring/web'
 
+import Button from './Button'
+
 const notes = [
   {
     title: 'Transfers are instant1',
@@ -19,15 +21,11 @@ const notes = [
     title: 'Transfers are instant4',
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas malesuada ex mauris',
   },
-  {
-    title: 'Transfers are instant5',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas malesuada ex mauris',
-  },
 ]
 
 const Note = ({ title, text }) => {
   return (
-    <div className="p-3 w-84 bg-white rounded-md space-y-2 border border-dark-200 shadow-sm">
+    <div className="p-3 w-84 bg-white rounded-md space-y-2 border border-dark-200 shadow-sm cursor-pointer hover:border-primary-100">
       <div className="flex justify-between">
         <span className="flex items-center space-x-2">
           <FileText size={16} />
@@ -85,10 +83,7 @@ const Articles = () => {
             Create screens directly in Method or add your images from Sketch or Figma. You can even
             sync designs from your cloud storage!
           </p>
-          <button className="flex space-x-2 items-center px-4 py-3.5 bg-primary-400 text-white rounded-xl cursor-pointer">
-            <Zap size={16} />
-            <span className="text-sm">Okey, let's rock!</span>
-          </button>
+          <Button icon="zap" text="Okey, let's rock!" />
         </div>
         <div className="flex-1 flex flex-col space-y-8 items-end z-10 h-full overflow-y-auto">
           {notesTrail.map((props, index) => (

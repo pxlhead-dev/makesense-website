@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Package } from 'react-feather'
+import ReactTooltip from 'react-tooltip'
 import { useSpring, useTrail, animated, config } from '@react-spring/web'
 
 const transX = (x, y, s) => `translate(${x}px, ${y}px) scale(${s})`
@@ -44,6 +45,8 @@ const Feature = ({ icon, title, text }) => {
 
   return (
     <div
+      data-for="note"
+      data-tip
       onMouseLeave={() => set([0, 0, 1])}
       onMouseMove={(e) => {
         // const rect = ref.current.getBoundingClientRect()
@@ -98,7 +101,7 @@ const Features = () => {
       ref={(ref) => {
         setObserver(ref)
       }}
-      className="w-full flex flex-col justify-center items-center h-screen bg-dark-100"
+      className="w-full flex flex-col justify-center items-center h-screen bg-gray-50"
     >
       <div className="w-full flex flex-col justify-center items-center max-w-5xl px-4 mx-auto">
         <div className="w-full flex justify-between items-end mb-16">
@@ -120,6 +123,18 @@ const Features = () => {
           ))}
         </div>
       </div>
+      <ReactTooltip id="note" delayShow={200} className="tooltip tooltip-xl">
+        <div className="w-48">
+          <span className="text-sm font-medium my-4">Create Note</span>
+          <p className="text-xs font-normal text-gray-200 my-1">
+            Core is an entity that contains semantic information about notes inside
+          </p>
+          <img
+            src="https://source.unsplash.com/GXNo-OJynTQ/400x400"
+            className="object-cover w-full h-24 mt-2 rounded-sm"
+          />
+        </div>
+      </ReactTooltip>
     </section>
   )
 }

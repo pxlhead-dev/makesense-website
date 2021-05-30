@@ -4,10 +4,10 @@ import { ArrowRight } from 'react-feather'
 
 const navLinks = [
   { title: 'Statement', path: '/cta' },
-  { title: 'Problem', path: '/cta' },
-  { title: 'How it works', path: '/cta' },
-  { title: 'Pricing', path: '/cta' },
-  { title: 'Contacts', path: '/cta' },
+  { title: 'Use Cases', path: '/cta' },
+  { title: 'Features', path: '/cta' },
+  { title: 'Structure', path: '/cta' },
+  { title: 'Articles+', path: '/cta' },
 ]
 
 const Header = () => (
@@ -31,8 +31,24 @@ const Header = () => (
       <nav className="flex space-x-5 items-center">
         {navLinks.map(({ title, path }) => {
           return (
-            <Link key={title} className="cursor-pointer opacity-70 hover:opacity-100" to={path}>
-              {title}
+            <Link
+              key={title}
+              className="link relative cursor-pointer opacity-70 hover:opacity-100"
+              to={path}
+            >
+              <span>{title}</span>
+              <svg
+                className="absolute top-full mt-1 pointer-events-none text-primary-500 line stroke-current"
+                fill="none"
+                width="100%"
+                strokeWidth="2"
+                viewBox="0 0 101 9"
+              >
+                <path
+                  d="M.426 1.973C4.144 1.567 17.77-.514 21.443 1.48 24.296 3.026 24.844 4.627 27.5 7c3.075 2.748 6.642-4.141 10.066-4.688 7.517-1.2 13.237 5.425 17.59 2.745C58.5 3 60.464-1.786 66 2c1.996 1.365 3.174 3.737 5.286 4.41 5.423 1.727 25.34-7.981 29.14-1.294"
+                  pathLength="1"
+                />
+              </svg>
             </Link>
           )
         })}
@@ -44,9 +60,9 @@ const Header = () => (
           className="transform translate-x-0 group-hover:translate-x-0.5 group-hover:text-primary-700 transition duration-300 ease-in-out"
         />
         <svg
-          className="absolute top-full -left-2 mt-1 pointer-events-none line text-primary-500 stroke-current"
+          className="absolute top-full -left-2 mt-1 pointer-events-none text-primary-500 line stroke-current"
           fill="none"
-          width="85%"
+          width="100%"
           strokeWidth="1.5"
           viewBox="0 0 101 9"
         >

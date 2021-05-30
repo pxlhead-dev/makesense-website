@@ -1,5 +1,5 @@
 import React from 'react'
-import { Twitter } from 'react-feather'
+import { Twitter, Facebook, Figma } from 'react-feather'
 
 const navLinks = [
   { title: 'Statement' },
@@ -13,7 +13,7 @@ const Footer = () => (
   <footer className="w-full py-8">
     <div className="max-w-5xl px-4 py-6 mx-auto divide-y-2 divide-gray-100">
       <div className="flex justify-between items-center pb-6">
-        <a href="" className="flex items-center space-x-3">
+        <span className="flex items-center space-x-3">
           <svg
             width="32"
             height="30"
@@ -26,31 +26,27 @@ const Footer = () => (
               fill="#201943"
             />
           </svg>
-        </a>
+        </span>
         <nav className="flex space-x-4 items-center">
           {navLinks.map(({ title }) => {
             return (
-              <a href="" key={title} className="cursor-pointer">
+              <span key={title} className="cursor-pointer">
                 {title}
-              </a>
+              </span>
             )
           })}
         </nav>
         <div className="flex space-x-3">
-          <Twitter size={16} />
-          <Twitter size={16} />
-          <Twitter size={16} />
+          <Twitter size={16} stroke="none" fill="currentColor" />
+          <Facebook size={16} stroke="none" fill="currentColor" />
+          <Figma size={16} stroke="none" fill="currentColor" />
         </div>
       </div>
       <div className="flex justify-between items-center pt-6">
         <span>Copyright © 2021 or just... forget it</span>
         <div className="flex space-x-4">
-          <a href="" className="underline">
-            Confidentiality
-          </a>
-          <a href="" className="underline">
-            Terms of Use
-          </a>
+          <span className="underline">Confidentiality</span>
+          <span className="underline">Terms of Use</span>
         </div>
       </div>
     </div>

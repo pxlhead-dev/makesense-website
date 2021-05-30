@@ -2,6 +2,10 @@ import React, { useState } from 'react'
 import { Zap } from 'react-feather'
 import { useSpring, animated, config } from '@react-spring/web'
 
+const icons = {
+  zap: Zap,
+}
+
 const calc = (x, y, rect) => [
   (x - rect.left - rect.width / 2) / 5,
   (y - rect.top - rect.height / 2) / 5,
@@ -10,7 +14,7 @@ const calc = (x, y, rect) => [
 const transX = (x, y, s) => `translate(${x}px, ${y}px) scale(${s})`
 
 const Button = ({ icon, text, size }) => {
-  const Icon = icon
+  const Icon = icons[icon]
   const configList = Object.keys(config)
   const [xys, set] = useState([0, 0, 1])
   const { preset } = { value: 'wobbly', options: configList }

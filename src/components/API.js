@@ -4,7 +4,7 @@ import { useSpring, useTrail, animated, config } from '@react-spring/web'
 
 const tools = [Zap, Zap, Zap, Zap, Zap, Zap]
 
-const Automatization = () => {
+const API = () => {
   const styles = useSpring({
     loop: { reverse: true },
     from: { transform: 'scale(0.8)', opacity: 1 },
@@ -20,7 +20,7 @@ const Automatization = () => {
   })
 
   return (
-    <section className="w-full flex justify-between items-center h-screen bg-dotsWhite">
+    <section className="w-full flex justify-between items-center h-screen bg-light-100">
       <div className="w-full flex flex-col max-w-4xl px-4 mx-auto">
         <div className="w-full flex justify-center items-center mb-16">
           <h2 className="font-display font-medium text-5xl max-w-lg text-center">
@@ -103,4 +103,4 @@ const Automatization = () => {
   )
 }
 
-export default Automatization
+export default API

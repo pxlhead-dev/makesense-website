@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import { Zap, Package, BookOpen, Scissors } from 'react-feather'
+import { Package, BookOpen, Scissors } from 'react-feather'
 import { useSpring, useTrail, animated, config } from '@react-spring/web'
 import Typist from 'react-typist'
 
@@ -63,7 +63,7 @@ const Card = ({ type, icon, imgSrc, title, text, onClick, isDisabled }) => {
           type === 'gard' && 'bg-accent-pink bg-leafs'
         } ${
           type === 'lib' && 'bg-accent-yellow bg-library'
-        } flex flex-col justify-between items-stretch w-full h-48 p-5 bg-opacity-50 hover:bg-opacity-100 rounded-2xl cursor-pointer`}
+        } flex flex-col justify-between items-stretch w-full h-48 p-5 bg-opacity-50 rounded-2xl cursor-pointer`}
       >
         <div>
           {imgSrc ? (
@@ -83,8 +83,9 @@ const Card = ({ type, icon, imgSrc, title, text, onClick, isDisabled }) => {
 
 const Hero = () => {
   const [showOnScroll, setShowOnScroll] = useState(false)
+  const [resizeOnScroll, setResizeOnScroll] = useState(false)
 
-  const handleIntersect = (entries) => {
+  const handleTemplatesIntersect = (entries) => {
     entries.forEach((entry) => {
       if (entry.intersectionRatio > 0) {
         setShowOnScroll(true)
@@ -94,14 +95,45 @@ const Hero = () => {
     })
   }
 
+  const handleResizeIntersect = (entries) => {
+    entries.forEach((entry) => {
+      if (entry.intersectionRatio > 0) {
+        entry.intersectionRatio >= 0.8 ? setResizeOnScroll(true) : setResizeOnScroll(false)
+      } else {
+        setResizeOnScroll(false)
+      }
+    })
+  }
+
   const setObserver = (element) => {
     if (!element) {
       return
     }
 
-    const observer = new IntersectionObserver(handleIntersect, { threshold: 0.8 })
+    const observer = new IntersectionObserver(handleTemplatesIntersect, { threshold: 0.8 })
     observer.observe(element)
   }
+
+  const setResizeObserver = (element) => {
+    if (!element) {
+      return
+    }
+
+    const observer = new IntersectionObserver(handleResizeIntersect, { threshold: 0.8 })
+    observer.observe(element)
+  }
+
+  const props = useSpring({
+    from: { opacity: 0, transform: 'scale(0)' },
+    to: { opacity: 1, transform: 'scale(1)' },
+    config: config.gentle,
+  })
+
+  const propsResize = useSpring({
+    from: { opacity: 0, transform: 'scale(0)' },
+    to: { opacity: resizeOnScroll ? 1 : 0, transform: resizeOnScroll ? 'scale(1)' : 'scale(0)' },
+    config: config.gentle,
+  })
 
   const templatesTrail = useTrail(templates.length, {
     from: { opacity: 0, transform: 'scale(0)' },
@@ -113,10 +145,10 @@ const Hero = () => {
       <section className="flex flex-col justify-center items-center mt-40 mb-8">
         <h1 className="font-display font-bold text-7xl text-center mb-8">
           Evolve into a{' '}
-          <Typist avgTypingDelay={100} className="text-primary-400 inline-block">
+          <Typist avgTypingDelay={100} className="inline-block">
             <span>Human</span>
             <Typist.Backspace count={5} delay={1000} />
-            <span>Superhuman</span>
+            <span className="text-primary-400">Superhuman</span>
           </Typist>{' '}
           with your Mind Palace
         </h1>
@@ -124,17 +156,33 @@ const Hero = () => {
           Create or record notes, semantically organize, explore and search through your
           <span className="text-primary-400"> AI-powered digital mind!</span>
         </p>
-        <Button />
+        <Button icon="zap" text="I Want My Mind Palace" size="cta" />
         <span className="text-xs mb-16 opacity-60">
           Free 14 Days Trial - No credit card required
         </span>
-        <div className="w-full h-1/3 rounded-xl overflow-hidden shadow-sm transform translate-y-0 hover:shadow-2xl hover:-translate-y-4 z-10 transition duration-300 ease-in-out cursor-pointer">
+        <animated.div
+          ref={(ref) => {
+            setResizeObserver(ref)
+          }}
+          style={props}
+          className="relative w-full h-1/3 rounded-xl overflow-hidden shadow-sm cursor-pointer z-30"
+        >
           <img
             src="https://cdn.dribbble.com/users/2001748/screenshots/15717849/media/403b275af92e9adee9ec917dac06557c.png?compress=1&resize=1600x1200"
             alt=""
             className="object-contain w-full h-auto"
           />
-        </div>
+        </animated.div>
+        {/* <animated.div
+          style={propsResize}
+          className="fixed inset-0 w-screen h-screen overflow-hidden z-30"
+        >
+          <img
+            src="https://cdn.dribbble.com/users/2001748/screenshots/15717849/media/403b275af92e9adee9ec917dac06557c.png?compress=1&resize=1600x1200"
+            alt=""
+            className="object-contain w-full h-auto"
+          />
+        </animated.div> */}
         <div className="absolute top-1/2 left-0 z-0">
           <svg
             width="377"
@@ -184,7 +232,7 @@ const Hero = () => {
         ref={(ref) => {
           setObserver(ref)
         }}
-        className="w-full flex flex-col justify-center items-center py-16"
+        className="w-full flex flex-col justify-center items-center pt-8 pb-16"
       >
         <div className="w-full flex justify-between items-center space-x-8">
           {templatesTrail.map((props, index) => (
@@ -201,6 +249,9 @@ const Hero = () => {
             </animated.div>
           ))}
         </div>
+        <span className="text-xs text-center mt-8 opacity-60">
+          Comfortable for all <span className="underline">Mind Models</span>
+        </span>
       </section>
     </div>
   )

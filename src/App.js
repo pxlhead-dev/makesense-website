@@ -9,6 +9,7 @@ import Hero from './components/Hero'
 import Features from './components/Features'
 import Articles from './components/Articles'
 import Automatization from './components/Automatization'
+import API from './components/API'
 import CTA from './components/CTA'
 
 SmoothScrollbar.use(OverscrollPlugin)
@@ -25,7 +26,8 @@ function App() {
       >
         <Hero />
         <Features />
-        <Automatization />
+        {/* <Automatization />
+        <API /> */}
         <Articles />
         <CTA />
         <Footer />
