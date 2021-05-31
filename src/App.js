@@ -8,8 +8,8 @@ import Footer from './components/Footer'
 import Hero from './components/Hero'
 import Features from './components/Features'
 import Articles from './components/Articles'
-import Automatization from './components/Automatization'
-import API from './components/API'
+// import Automatization from './components/Automatization'
+// import API from './components/API'
 import CTA from './components/CTA'
 
 SmoothScrollbar.use(OverscrollPlugin)

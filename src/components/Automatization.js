@@ -1,16 +1,16 @@
 import React from 'react'
-import { Zap, FileText } from 'react-feather'
-import { useSpring, useTrail, animated, config } from '@react-spring/web'
+import { Zap } from 'react-feather'
+import { useTrail, animated, config } from '@react-spring/web'
 
 const tools = [Zap, Zap, Zap, Zap, Zap, Zap]
 
 const Automatization = () => {
-  const styles = useSpring({
-    loop: { reverse: true },
-    from: { transform: 'scale(0.8)', opacity: 1 },
-    to: { transform: 'scale(1)', opacity: 1 },
-    config: config.slow,
-  })
+  // const styles = useSpring({
+  //   loop: { reverse: true },
+  //   from: { transform: 'scale(0.8)', opacity: 1 },
+  //   to: { transform: 'scale(1)', opacity: 1 },
+  //   config: config.slow,
+  // })
 
   const toolsTrail = useTrail(tools.length, {
     loop: { reverse: true },

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Twitter, Facebook, Figma } from 'react-feather'
+import { Twitter, Facebook } from 'react-feather'
 
 const navLinks = [
   { title: 'Statement' },

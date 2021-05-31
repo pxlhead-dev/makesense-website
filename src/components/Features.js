@@ -132,6 +132,7 @@ const Features = () => {
           <img
             src="https://source.unsplash.com/GXNo-OJynTQ/400x400"
             className="object-cover w-full h-24 mt-2 rounded-sm"
+            alt="tooltip"
           />
         </div>
       </ReactTooltip>

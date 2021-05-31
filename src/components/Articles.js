@@ -2,8 +2,6 @@ import React, { useState } from 'react'
 import { Play, MoreVertical, FileText } from 'react-feather'
 import { useTrail, animated, config, useSpring } from '@react-spring/web'
 
-import Button from './Button'
-
 const notes = [
   {
     title: 'Transfers are instant1',
