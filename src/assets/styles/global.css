@@ -52,3 +52,16 @@
 .tooltip::after {
   display: none;
 }
+
+.bg-animated {
+  animation: bg-animation 6s linear infinite;
+}
+
+@keyframes bg-animation {
+  from {
+    background-position: 0% 0%;
+  }
+  to {
+    background-position: 0 200%;
+  }
+}

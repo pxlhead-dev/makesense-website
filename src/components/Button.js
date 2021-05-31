@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { Zap } from 'react-feather'
+import { Zap, GitPullRequest } from 'react-feather'
 import { useSpring, animated, config } from '@react-spring/web'
 
 const icons = {
   zap: Zap,
+  gitPull: GitPullRequest,
 }
 
 const calc = (x, y, rect) => [
@@ -29,7 +30,7 @@ const Button = ({ icon, text, size }) => {
           const rect = event.target.getBoundingClientRect()
           set(calc(event.clientX, event.clientY, rect))
         }}
-        className="group flex space-x-2 items-center px-4 py-3.5 bg-primary-400 text-white rounded-xl cursor-pointer mb-3 border-2 border-transparent hover:border-primary-800"
+        className="group flex space-x-2 items-center px-4 py-3.5 bg-primary-400 text-white rounded-xl cursor-pointer border-2 border-transparent hover:border-primary-800"
       >
         <Icon size={20} className="group-hover:text-yellow-200" />
         <span className={`${size === 'cta' ? 'text-base md:text-xl' : 'text-sm'}`}>{text}</span>

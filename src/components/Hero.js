@@ -63,7 +63,7 @@ const Card = ({ type, icon, imgSrc, title, text, onClick, isDisabled }) => {
           type === 'gard' && 'bg-accent-pink bg-leafs'
         } ${
           type === 'lib' && 'bg-accent-yellow bg-library'
-        } flex flex-col justify-between items-stretch w-full h-48 p-5 bg-opacity-50 rounded-2xl cursor-pointer`}
+        } flex flex-col justify-between items-stretch w-full h-48 p-5 bg-opacity-50 rounded-2xl cursor-pointer hover:bg-animated`}
       >
         <div>
           {imgSrc ? (
@@ -157,8 +157,8 @@ const Hero = () => {
           <span className="text-primary-400"> AI-powered digital mind!</span>
         </p>
         <Button icon="zap" text="I Want My Mind Palace" size="cta" />
-        <span className="text-xs mb-8 md:mb-16 opacity-60">
-          Free 14 Days Trial - No credit card required
+        <span className="text-xs mb-8 mt-3 md:mb-16 opacity-60">
+          Alpha access here! — No card required
         </span>
         <animated.div
           ref={(ref) => {
@@ -234,7 +234,7 @@ const Hero = () => {
         }}
         className="w-full flex flex-col justify-center items-center pt-8 pb-16"
       >
-        <div className="w-full flex flex-col md:flex-row justify-between items-center space-y-8 md:space-x-8">
+        <div className="w-full flex flex-col md:flex-row justify-between items-center space-y-8 md:space-x-8 md:space-y-0">
           {templatesTrail.map((props, index) => (
             <animated.div key={templates[index].title} style={props} className="w-full">
               <Card

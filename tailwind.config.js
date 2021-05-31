@@ -91,6 +91,7 @@ module.exports = {
   variants: {
     opacity: ['responsive', 'hover', 'focus', 'group-hover'],
     scale: ['responsive', 'hover', 'focus', 'group-hover'],
+    bgAnimated: ['responsive', 'hover', 'focus'],
     extend: {
       backgroundImage: ['dark'],
       transform: ['group-hover'],

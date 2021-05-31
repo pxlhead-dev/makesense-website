@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Zap, MoreVertical, FileText } from 'react-feather'
-import { useTrail, animated, config } from '@react-spring/web'
+import { Play, MoreVertical, FileText } from 'react-feather'
+import { useTrail, animated, config, useSpring } from '@react-spring/web'
 
 import Button from './Button'
 
@@ -24,8 +24,24 @@ const notes = [
 ]
 
 const Note = ({ title, text }) => {
+  const [xys, set] = useState([0, 0, 1])
+  const trans = (x, y, s) => `translateX(${x}%) translateY(${y}%) scale(${s})`
+
+  const props = useSpring({
+    xys,
+    config: config.gentle,
+  })
   return (
-    <div className="p-3 w-84 bg-white rounded-md space-y-2 border border-dark-200 shadow-sm cursor-pointer hover:border-primary-100">
+    <animated.div
+      style={{
+        transform: props.xys.to(trans),
+      }}
+      onMouseLeave={() => set([0, 0, 1])}
+      onMouseMove={() => {
+        set([-5, 0, 1.1])
+      }}
+      className="p-3 w-84 bg-white rounded-md space-y-2 border border-dark-200 shadow-sm cursor-pointer"
+    >
       <div className="flex justify-between">
         <span className="flex items-center space-x-2">
           <FileText size={16} />
@@ -36,7 +52,7 @@ const Note = ({ title, text }) => {
         </button>
       </div>
       <p className="mt-2 leading-6 opacity-75">{text}</p>
-    </div>
+    </animated.div>
   )
 }
 
@@ -83,7 +99,12 @@ const Articles = () => {
             Create screens directly in Method or add your images from Sketch or Figma. You can even
             sync designs from your cloud storage!
           </p>
-          <Button icon="zap" text="Okey, let's rock!" />
+          <button className="flex space-x-3 items-center group">
+            <span className="px-4 py-2 bg-primary-400 text-white rounded-full">
+              <Play size="16" />
+            </span>
+            <span className="group-hover:underline">Open Knowledge Base</span>
+          </button>
         </div>
         <div className="flex-1 flex flex-row md:flex-col space-x-4 md:space-x-0 md:space-y-8 justify-start overflow-hidden items-end z-10 h-full overflow-y-auto">
           {notesTrail.map((props, index) => (
