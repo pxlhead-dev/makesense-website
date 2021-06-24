@@ -4,19 +4,19 @@ import { useTrail, animated, config, useSpring } from '@react-spring/web'
 
 const notes = [
   {
-    title: 'Transfers are instant1',
+    title: 'What is Mind Palace?',
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas malesuada ex mauris',
   },
   {
-    title: 'Transfers are instant2',
+    title: 'What is Mind Models?',
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas malesuada ex mauris',
   },
   {
-    title: 'Transfers are instant3',
+    title: 'Methods of creating Digital Mind',
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas malesuada ex mauris',
   },
   {
-    title: 'Transfers are instant4',
+    title: 'How AI becomes your personal assitant?',
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas malesuada ex mauris',
   },
 ]
@@ -41,8 +41,8 @@ const Note = ({ title, text }) => {
       className="p-3 w-84 bg-white rounded-md space-y-2 border border-dark-200 shadow-sm cursor-pointer"
     >
       <div className="flex justify-between">
-        <span className="flex items-center space-x-2">
-          <FileText size={16} />
+        <span className="flex space-x-2">
+          <FileText size={16} className="mt-1.5" />
           <h4 className="font-medium text-lg">{title}</h4>
         </span>
         <button className="bg-transparent cursor-pointer p-0.5 ml-1 -mr-1 rounded hover:bg-gray-100">
@@ -94,15 +94,20 @@ const Articles = () => {
             Read our articles to understand how Mind Palace works
           </h2>
           <p className="mb-10">
-            Create screens directly in Method or add your images from Sketch or Figma. You can even
-            sync designs from your cloud storage!
+            With MakeSense you can easy create or import notes, manage your digital mind
+            architecture and generate new information from it.
           </p>
-          <button className="flex space-x-3 items-center group">
+          <a
+            href="https://app.makesense.to/core/60d1997f7bc748a015abebf0"
+            target="_blank"
+            rel="noreferrer"
+            className="flex space-x-3 items-center group"
+          >
             <span className="px-4 py-2 bg-primary-400 text-white rounded-full">
               <Play size="16" />
             </span>
             <span className="group-hover:underline">Open Knowledge Base</span>
-          </button>
+          </a>
         </div>
         <div className="flex-1 flex flex-row md:flex-col space-x-4 md:space-x-0 md:space-y-8 justify-start overflow-hidden items-end z-10 h-full overflow-y-auto">
           {notesTrail.map((props, index) => (

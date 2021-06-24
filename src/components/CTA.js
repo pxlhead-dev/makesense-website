@@ -21,7 +21,12 @@ const CTA = () => {
             Sci-Fi and get in touch with us!
           </p>
           <div className="flex space-x-3 justify-end">
-            <button className="flex space-x-2 items-center px-4 py-3.5 bg-white shadow-sm rounded-xl cursor-pointer border-2 border-transparent hover:border-gray-600 transition duration-300 ease-in-out">
+            <a
+              href="https://discord.gg/v5MDAhU8"
+              target="_blank"
+              rel="noreferrer"
+              className="flex space-x-2 items-center px-4 py-3.5 bg-white shadow-sm rounded-xl cursor-pointer border-2 border-transparent hover:border-gray-600 transition duration-300 ease-in-out"
+            >
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
                 <g fill="#000">
                   <path d="M9.328,10.068a1.337,1.337,0,0,0,0,2.664A1.278,1.278,0,0,0,10.552,11.4,1.271,1.271,0,0,0,9.328,10.068Zm4.38,0A1.337,1.337,0,1,0,14.932,11.4,1.278,1.278,0,0,0,13.708,10.068Z"></path>{' '}
@@ -32,8 +37,13 @@ const CTA = () => {
                 </g>
               </svg>
               <span className="text-sm">Discord server</span>
-            </button>
-            <button className="flex space-x-2 items-center px-4 py-3.5 bg-white shadow-sm rounded-xl cursor-pointer border-2 border-transparent hover:border-gray-600 transition duration-300 ease-in-out">
+            </a>
+            <a
+              href="https://t.me/MakeSensePlatform"
+              target="_blank"
+              rel="noreferrer"
+              className="flex space-x-2 items-center px-4 py-3.5 bg-white shadow-sm rounded-xl cursor-pointer border-2 border-transparent hover:border-gray-600 transition duration-300 ease-in-out"
+            >
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
                 <g fill="#000">
                   <path
@@ -43,7 +53,7 @@ const CTA = () => {
                 </g>
               </svg>
               <span className="text-sm">Telegram channel</span>
-            </button>
+            </a>
           </div>
         </div>
       </div>
