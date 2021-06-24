@@ -109,7 +109,7 @@ const Articles = () => {
             <span className="group-hover:underline">Open Knowledge Base</span>
           </a>
         </div>
-        <div className="flex-1 flex flex-row md:flex-col space-x-4 md:space-x-0 md:space-y-8 justify-start overflow-hidden items-end z-10 h-full overflow-y-auto">
+        <div className="flex-1 flex flex-col space-x-0 space-y-8 justify-start overflow-hidden items-end z-10 h-full overflow-y-auto">
           {notesTrail.map((props, index) => (
             <animated.div key={notes[index].title} style={props}>
               <Note key={notes[index].title} title={notes[index].title} text={notes[index].text} />
