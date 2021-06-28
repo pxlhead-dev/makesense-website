@@ -13,7 +13,11 @@ const CTA = () => {
           <h2 className="font-display font-medium text-5xl max-w-lg">
             Make Sense created by & for Community
           </h2>
-          <Button icon="gitPull" text="Check Development Pipeline" />
+          <Button
+            href="https://sharing.clickup.com/l/h/2dz6p-204/2686142e628cdf8"
+            icon="gitPull"
+            text="Check Development Pipeline"
+          />
         </div>
         <div className="flex-1 flex flex-col space-y-8 items-end z-10">
           <p className="text-right">

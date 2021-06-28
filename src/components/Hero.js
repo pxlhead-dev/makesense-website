@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react'
 import { Package, BookOpen, Scissors } from 'react-feather'
 import { useSpring, useTrail, animated, config } from '@react-spring/web'
 import Typist from 'react-typist'
+import heroImage from './../assets/images/preview.png'
 
 import Button from './Button'
 
@@ -156,7 +157,12 @@ const Hero = () => {
           Create or record notes, semantically organize, explore and search through your
           <span className="text-primary-400"> AI-powered digital mind!</span>
         </p>
-        <Button icon="zap" text="I Want My Mind Palace" size="cta" />
+        <Button
+          href="https://app.makesense.to"
+          icon="zap"
+          text="I Want My Mind Palace"
+          size="cta"
+        />
         <span className="text-xs mb-8 mt-3 md:mb-16 opacity-60">
           Alpha access here! — No card required
         </span>
@@ -167,11 +173,7 @@ const Hero = () => {
           style={props}
           className="relative w-full h-1/3 rounded-xl overflow-hidden shadow-sm cursor-pointer z-30"
         >
-          <img
-            src="https://cdn.dribbble.com/users/2001748/screenshots/15717849/media/403b275af92e9adee9ec917dac06557c.png?compress=1&resize=1600x1200"
-            alt=""
-            className="object-contain w-full h-auto"
-          />
+          <img src={heroImage} alt="" className="object-contain w-full h-auto" />
         </animated.div>
         {/* <animated.div
           style={propsResize}

@@ -14,7 +14,7 @@ const calc = (x, y, rect) => [
 ]
 const transX = (x, y, s) => `translate(${x}px, ${y}px) scale(${s})`
 
-const Button = ({ icon, text, size }) => {
+const Button = ({ icon, text, size, href }) => {
   const Icon = icons[icon]
   const configList = Object.keys(config)
   const [xys, set] = useState([0, 0, 1])
@@ -23,18 +23,21 @@ const Button = ({ icon, text, size }) => {
 
   return (
     <div>
-      <animated.button
+      <animated.a
+        href={href}
+        target="_blank"
+        rel="noreferrer"
         style={{ transform: props.xys.to(transX) }}
         onMouseLeave={() => set([0, 0, 1])}
         onMouseMove={(event) => {
           const rect = event.target.getBoundingClientRect()
           set(calc(event.clientX, event.clientY, rect))
         }}
-        className="group flex space-x-2 items-center px-4 py-3.5 bg-primary-400 text-white rounded-xl cursor-pointer border-2 border-transparent hover:border-primary-800"
+        className="group flex space-x-2 items-center px-4 py-3.5 bg-primary-400 text-white rounded-xl cursor-pointer border-2 border-transparent hover:border-primary-800 outline-none"
       >
         <Icon size={20} className="group-hover:text-yellow-200" />
         <span className={`${size === 'cta' ? 'text-base md:text-xl' : 'text-sm'}`}>{text}</span>
-      </animated.button>
+      </animated.a>
     </div>
   )
 }
